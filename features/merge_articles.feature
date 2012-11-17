@@ -5,6 +5,11 @@ Feature: Merge articles
   
   Background:
     Given the blog is set up
+    Given the following users exist:
+    | login | email             | name |
+    | jason | jason@example.com | jason|
+    | bob   | bob@example.com   | bob  |
+
     Given the following articles exist:
     | id | title | author | body         | published_at        | state |
     | 10 | Foo   | jason  | This is foo  | 2012-11-14 16:01:00 | published |
