@@ -12,10 +12,13 @@ Given /^the following users exist:/ do |users|
 end
 
 Then /^I should see content from "(.*?)" and "(.*?)"$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?(Article.find_by_title(arg1).body) && page.has_content?(Article.find_by_title(arg2).body)
+
 end
 
 Then /^The author of "(.*?)" should be "(.*?)"$/ do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  post = Article.find_by_title(art1)
+
+  assert post.author == "arg2"
 end
 
