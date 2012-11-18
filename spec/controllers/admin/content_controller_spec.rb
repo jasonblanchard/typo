@@ -670,5 +670,15 @@ describe Admin::ContentController do
       end
 
     end
+
+    describe 'merge two articles' do
+      it 'should redirect to edit page when the merge with ID doesnt exist' do
+        foo = Factory(:article, :id => 50, :title => "Foo", :body => "This is foo")
+        
+        get :merge, :article => foo.id, :merge_with => 6
+
+        response.should redirect_to(:action => "edit", :id => 50)
+      end
+    end
   end
 end

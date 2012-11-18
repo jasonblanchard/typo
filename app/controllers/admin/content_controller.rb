@@ -52,6 +52,19 @@ class Admin::ContentController < Admin::BaseController
     redirect_to :action => 'index'
   end
 
+  def merge
+    @article = Article.find(params[:article])
+    @similar_article = Article.find_by_id(params[:merge_with])
+    
+    if @similar_article != nil
+      @article.merge_with(@similar_article)
+      redirect_to :index
+    else
+       redirect_to :action => 'edit', :id => @article.id
+    end
+
+  end
+
   def insert_editor
     editor = 'visual'
     editor = 'simple' if params[:editor].to_s == 'simple'
@@ -241,7 +254,4 @@ class Admin::ContentController < Admin::BaseController
     @resources = Resource.by_created_at
   end
 
-  def merge
-    #pending
-  end
 end
