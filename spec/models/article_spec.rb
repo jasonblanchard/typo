@@ -629,6 +629,20 @@ describe Article do
       end
     end
 
+    context "merging articles" do
+
+      it "should add the body content of both articles to the first article" do
+        foo = Factory(:article, :title => "Foo", :body => "This is foo")
+        bar = Factory(:article, :title => "Bar", :body => "This is bar")
+
+        foo.merge_with(bar)
+
+        foo.body.should include(foo.body)
+        foo.body.should include(bar.body)
+      end
+    end
+      
+
   end
 end
 
