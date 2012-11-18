@@ -100,6 +100,7 @@ class Article < Content
     merged_content = "#{article_content} \n #{similar_article.body}"
 
     self.update_attributes(:body => merged_content)
+    self.merge_comments(similar_article)
   end
 
   def merge_comments(similar_article)

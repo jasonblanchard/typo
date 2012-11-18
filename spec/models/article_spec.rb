@@ -650,7 +650,7 @@ describe Article do
         comment2 = Factory(:comment, :title => "Similar comment 2", :body => "zxcvzxcv", :author => "Piere", :article_id => 51)
         comment3 = Factory(:comment, :title => "Oiginal comment", :body => "ghjkghjk", :author => "Slard", :article_id => 50)
 
-        foo.merge_comments(bar)
+        foo.merge_with(bar)
 
         comment1.article_id == foo.id
         comment2.article_id == foo.id
