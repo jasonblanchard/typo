@@ -640,6 +640,23 @@ describe Article do
         foo.body.should include(foo.body)
         foo.body.should include(bar.body)
       end
+
+      it "should should merge comments from the similar article to the merged article" do
+        foo = Factory(:article, :title => "Foo", :body => "This is foo", :id => 50)
+        bar = Factory(:article, :title => "Bar", :body => "This is bar", :id => 51)
+
+
+        comment1 = Factory(:comment, :title => "Similar comment 1", :body => "asdasdf", :author => "Alf", :article_id => 51)
+        comment2 = Factory(:comment, :title => "Similar comment 2", :body => "zxcvzxcv", :author => "Piere", :article_id => 51)
+        comment3 = Factory(:comment, :title => "Oiginal comment", :body => "ghjkghjk", :author => "Slard", :article_id => 50)
+
+        foo.merge_comments(bar)
+
+        comment1.article_id == foo.id
+        comment2.article_id == foo.id
+        comment3.article_id == foo.id
+      end
+
     end
       
 
