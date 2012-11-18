@@ -94,6 +94,9 @@ class Article < Content
 
   include Article::States
 
+  def merge_with(article)
+  end
+
   class << self
     def last_draft(article_id)
       article = Article.find(article_id)

@@ -58,9 +58,9 @@ class Admin::ContentController < Admin::BaseController
     
     if @similar_article != nil
       @article.merge_with(@similar_article)
-      redirect_to :index
+      redirect_to :action => 'index'
     else
-       redirect_to :action => 'edit', :id => @article.id
+      redirect_to :action => 'edit', :id => @article.id
     end
 
   end

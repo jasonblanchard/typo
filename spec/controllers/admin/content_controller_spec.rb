@@ -679,6 +679,18 @@ describe Admin::ContentController do
 
         response.should redirect_to(:action => "edit", :id => 50)
       end
+
+      it 'should redirect to articles index if merge is successful' do
+        foo = Factory(:article, :id => 50, :title => "Foo", :body => "This is foo")
+        bar = Factory(:article, :id => 51, :title => "Bar", :body => "This is ber")
+
+        foo.stub(:merge_with)
+
+        get :merge, :article => foo.id, :merge_with => bar.id
+
+        response.should redirect_to "/admin/content"
+      end
+
     end
   end
 end
