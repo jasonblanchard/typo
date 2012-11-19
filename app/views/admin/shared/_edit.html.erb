@@ -4,7 +4,8 @@
   <%= render :partial => "form" %>
 
 <% end %>
-<% unless form_action[:action] == "new" %>
+
+<% if params[:action] != "new" %>
     <%= form_tag({:action => "merge"}, :method => "get") do %>
     <%= label_tag(:merge_with, "Article ID:") %>
     <%= text_field_tag(:merge_with) %>
