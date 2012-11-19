@@ -55,6 +55,11 @@ class Admin::ContentController < Admin::BaseController
   def merge
     @article = Article.find(params[:article])
     @similar_article = Article.find_by_id(params[:merge_with])
+
+    unless current_user.admin?
+      redirect_to '/admin/'
+      return
+    end
     
     if @similar_article != nil
       @article.merge_with(@similar_article)

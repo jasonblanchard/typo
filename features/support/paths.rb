@@ -15,6 +15,10 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+
+    when /^the admin page/
+      '/admin/'
+
     when /^the new article page$/
       '/admin/content/new'
 
@@ -24,6 +28,12 @@ module NavigationHelpers
 
     when /^admin content page/
       "/admin/content"
+
+    when /^the "merge article" page for "(.*)" and "(.*)"/
+      id1 = Article.find_by_title($1).id
+      id2 = Article.find_by_title($2).id
+
+      "/admin/content/merge?utf8=%E2%9C%93&merge_with=#{id2}&article=#{id1}&commit=Merge"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

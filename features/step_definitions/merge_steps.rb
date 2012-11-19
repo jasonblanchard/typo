@@ -6,7 +6,7 @@ end
 
 Given /^the following users exist:/ do |users|
   users.hashes.each do |user|
-    User.create( :login => user[:login], :email => user[:email], :name => user[:name] )
+    User.create( :login => user[:login], :email => user[:email], :name => user[:name], :password => user[:password], :profile_id => user[:profile_id] )
   end
 end
 
@@ -25,5 +25,17 @@ end
 When /^I fill in "(.*?)" with the title of similar article "(.*?)"$/ do |field, title|
   id = Article.find_by_title(title).id
   fill_in(field, :with => id)
+end
+
+Given /^I am logged in as "(.*?)"$/ do |arg1|
+  visit '/accounts/login'
+  fill_in 'user_login', :with => 'jason'
+  fill_in 'user_password', :with => 'secret'
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content("Login successful")
+  else
+    assert page.has_content?("Login successful")
+  end
 end
 

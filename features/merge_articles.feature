@@ -6,9 +6,9 @@ Feature: Merge articles
   Background:
     Given the blog is set up
     Given the following users exist:
-    | login | email             | name |
-    | jason | jason@example.com | jason|
-    | bob   | bob@example.com   | bob  |
+    | login | email             | name | password | profile_id |
+    | jason | jason@example.com | jason| secret   | 2          |
+    | bob   | bob@example.com   | bob  |          | 3          |
 
     Given the following articles exist:
     | title      | author | body              | published_at        | state     | type    |
@@ -26,3 +26,8 @@ Feature: Merge articles
     When I follow "Batman"
     Then I should see content from "Batman" and "Robin"
     And The author of "Batman" should be "jason"
+
+  Scenario: Non-admins cannot merge two articles
+    Given I am logged in as "jason"
+    And I am on the "merge article" page for "Batman" and "Robin"
+    Then I should be on the admin page
