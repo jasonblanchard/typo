@@ -34,4 +34,5 @@ describe "admin/content/new.html.erb" do
     assign(:resources, [])
     render
   end
+
 end
