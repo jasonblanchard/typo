@@ -17,9 +17,9 @@ Then /^I should see content from "(.*?)" and "(.*?)"$/ do |arg1, arg2|
 end
 
 Then /^The author of "(.*?)" should be "(.*?)"$/ do |arg1, arg2|
-  post = Article.find_by_title(art1)
+  post = Article.find_by_title(arg1)
 
-  assert post.author.login == "arg2"
+  assert post.author.should == arg2
 end
 
 When /^I fill in "(.*?)" with the title of similar article "(.*?)"$/ do |field, title|
