@@ -12,7 +12,7 @@ end
 
 Then /^I should see content from "(.*?)" and "(.*?)"$/ do |arg1, arg2|
 # assert page.has_content?(Article.find_by_title(arg1).body)
-  assert page.has_content?(Article.find_by_title(arg2).body)
+  assert page.has_content?(arg2)
 
 end
 

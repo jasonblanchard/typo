@@ -24,7 +24,7 @@ Feature: Merge articles
     When I go to the home page
     Then I should see "Batman"
     When I follow "Batman"
-    Then I should see content from "Batman" and "Robin"
+    Then I should see content from "Batman" and "Post about robin"
     And The author of "Batman" should be "jason"
 
   Scenario: Non-admins cannot merge two articles

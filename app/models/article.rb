@@ -101,6 +101,10 @@ class Article < Content
 
     self.update_attributes(:body => merged_content)
     self.merge_comments(similar_article)
+
+    article_to_destroy = Article.find(similar_article.id)
+
+    article_to_destroy.destroy
   end
 
   def merge_comments(similar_article)
