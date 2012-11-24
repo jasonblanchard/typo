@@ -35,6 +35,9 @@ module NavigationHelpers
 
       "/admin/content/merge?utf8=%E2%9C%93&merge_with=#{id2}&article=#{id1}&commit=Merge"
 
+    when /^the category admin page/
+      "/admin/categories/new"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
